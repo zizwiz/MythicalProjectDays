@@ -48,13 +48,13 @@ namespace MythicalProjectDays
             this.DatePick_EndDate = new System.Windows.Forms.DateTimePicker();
             this.panel6 = new System.Windows.Forms.Panel();
             this.btn_days_between = new System.Windows.Forms.Button();
-            this.panel7 = new System.Windows.Forms.Panel();
-            this.lbl_days_between = new System.Windows.Forms.Label();
             this.panel8 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.panel9 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.panel10 = new System.Windows.Forms.Panel();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.lbl_days_between = new System.Windows.Forms.Label();
             this.tab_holidays = new System.Windows.Forms.TabPage();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -66,9 +66,9 @@ namespace MythicalProjectDays
             this.panel4.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel6.SuspendLayout();
-            this.panel7.SuspendLayout();
             this.panel8.SuspendLayout();
             this.panel9.SuspendLayout();
+            this.panel7.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -126,10 +126,10 @@ namespace MythicalProjectDays
             // tableLayoutPanel2
             // 
             this.tableLayoutPanel2.ColumnCount = 4;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 45F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 35F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel2.Controls.Add(this.panel4, 2, 0);
             this.tableLayoutPanel2.Controls.Add(this.panel5, 2, 1);
             this.tableLayoutPanel2.Controls.Add(this.panel6, 2, 2);
@@ -154,51 +154,51 @@ namespace MythicalProjectDays
             // 
             this.panel4.Controls.Add(this.DatePick_StartDate);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel4.Location = new System.Drawing.Point(298, 5);
+            this.panel4.Location = new System.Drawing.Point(335, 5);
             this.panel4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(323, 52);
+            this.panel4.Size = new System.Drawing.Size(249, 52);
             this.panel4.TabIndex = 0;
             // 
             // DatePick_StartDate
             // 
-            this.DatePick_StartDate.Location = new System.Drawing.Point(9, 11);
+            this.DatePick_StartDate.Location = new System.Drawing.Point(24, 11);
             this.DatePick_StartDate.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.DatePick_StartDate.Name = "DatePick_StartDate";
-            this.DatePick_StartDate.Size = new System.Drawing.Size(298, 26);
+            this.DatePick_StartDate.Size = new System.Drawing.Size(200, 26);
             this.DatePick_StartDate.TabIndex = 0;
             // 
             // panel5
             // 
             this.panel5.Controls.Add(this.DatePick_EndDate);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel5.Location = new System.Drawing.Point(298, 67);
+            this.panel5.Location = new System.Drawing.Point(335, 67);
             this.panel5.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(323, 52);
+            this.panel5.Size = new System.Drawing.Size(249, 52);
             this.panel5.TabIndex = 1;
             // 
             // DatePick_EndDate
             // 
-            this.DatePick_EndDate.Location = new System.Drawing.Point(9, 17);
+            this.DatePick_EndDate.Location = new System.Drawing.Point(24, 17);
             this.DatePick_EndDate.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.DatePick_EndDate.Name = "DatePick_EndDate";
-            this.DatePick_EndDate.Size = new System.Drawing.Size(298, 26);
+            this.DatePick_EndDate.Size = new System.Drawing.Size(200, 26);
             this.DatePick_EndDate.TabIndex = 0;
             // 
             // panel6
             // 
             this.panel6.Controls.Add(this.btn_days_between);
             this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel6.Location = new System.Drawing.Point(298, 129);
+            this.panel6.Location = new System.Drawing.Point(335, 129);
             this.panel6.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(323, 52);
+            this.panel6.Size = new System.Drawing.Size(249, 52);
             this.panel6.TabIndex = 2;
             // 
             // btn_days_between
             // 
-            this.btn_days_between.Location = new System.Drawing.Point(76, 8);
+            this.btn_days_between.Location = new System.Drawing.Point(65, 5);
             this.btn_days_between.Name = "btn_days_between";
             this.btn_days_between.Size = new System.Drawing.Size(119, 43);
             this.btn_days_between.TabIndex = 0;
@@ -206,33 +206,11 @@ namespace MythicalProjectDays
             this.btn_days_between.UseVisualStyleBackColor = true;
             this.btn_days_between.Click += new System.EventHandler(this.btn_days_between_Click);
             // 
-            // panel7
-            // 
-            this.tableLayoutPanel2.SetColumnSpan(this.panel7, 2);
-            this.panel7.Controls.Add(this.lbl_days_between);
-            this.panel7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel7.Location = new System.Drawing.Point(114, 191);
-            this.panel7.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.panel7.Name = "panel7";
-            this.tableLayoutPanel2.SetRowSpan(this.panel7, 2);
-            this.panel7.Size = new System.Drawing.Size(507, 98);
-            this.panel7.TabIndex = 3;
-            // 
-            // lbl_days_between
-            // 
-            this.lbl_days_between.AutoSize = true;
-            this.lbl_days_between.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbl_days_between.Location = new System.Drawing.Point(0, 0);
-            this.lbl_days_between.Name = "lbl_days_between";
-            this.lbl_days_between.Size = new System.Drawing.Size(29, 20);
-            this.lbl_days_between.TabIndex = 0;
-            this.lbl_days_between.Text = ".....";
-            // 
             // panel8
             // 
             this.panel8.Controls.Add(this.label1);
             this.panel8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel8.Location = new System.Drawing.Point(114, 5);
+            this.panel8.Location = new System.Drawing.Point(151, 5);
             this.panel8.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panel8.Name = "panel8";
             this.panel8.Size = new System.Drawing.Size(176, 52);
@@ -251,7 +229,7 @@ namespace MythicalProjectDays
             // 
             this.panel9.Controls.Add(this.label2);
             this.panel9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel9.Location = new System.Drawing.Point(114, 67);
+            this.panel9.Location = new System.Drawing.Point(151, 67);
             this.panel9.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panel9.Name = "panel9";
             this.panel9.Size = new System.Drawing.Size(176, 52);
@@ -269,11 +247,33 @@ namespace MythicalProjectDays
             // panel10
             // 
             this.panel10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel10.Location = new System.Drawing.Point(114, 129);
+            this.panel10.Location = new System.Drawing.Point(151, 129);
             this.panel10.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panel10.Name = "panel10";
             this.panel10.Size = new System.Drawing.Size(176, 52);
             this.panel10.TabIndex = 6;
+            // 
+            // panel7
+            // 
+            this.tableLayoutPanel2.SetColumnSpan(this.panel7, 2);
+            this.panel7.Controls.Add(this.lbl_days_between);
+            this.panel7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel7.Location = new System.Drawing.Point(151, 191);
+            this.panel7.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.panel7.Name = "panel7";
+            this.tableLayoutPanel2.SetRowSpan(this.panel7, 2);
+            this.panel7.Size = new System.Drawing.Size(433, 98);
+            this.panel7.TabIndex = 3;
+            // 
+            // lbl_days_between
+            // 
+            this.lbl_days_between.AutoSize = true;
+            this.lbl_days_between.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lbl_days_between.Location = new System.Drawing.Point(0, 0);
+            this.lbl_days_between.Name = "lbl_days_between";
+            this.lbl_days_between.Size = new System.Drawing.Size(29, 20);
+            this.lbl_days_between.TabIndex = 0;
+            this.lbl_days_between.Text = ".....";
             // 
             // tab_holidays
             // 
@@ -313,7 +313,8 @@ namespace MythicalProjectDays
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "MainForm";
-            this.Text = "MythicalProjectDays";
+            this.Text = "Mythical Project Days";
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
@@ -322,10 +323,10 @@ namespace MythicalProjectDays
             this.panel4.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
             this.panel6.ResumeLayout(false);
-            this.panel7.ResumeLayout(false);
-            this.panel7.PerformLayout();
             this.panel8.ResumeLayout(false);
             this.panel9.ResumeLayout(false);
+            this.panel7.ResumeLayout(false);
+            this.panel7.PerformLayout();
             this.ResumeLayout(false);
 
 		}

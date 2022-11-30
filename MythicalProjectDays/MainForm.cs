@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Reflection;
 using System.Windows.Forms;
 
 
@@ -16,7 +17,10 @@ namespace MythicalProjectDays
 
         }
 
-
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            Text += " : v" + Assembly.GetExecutingAssembly().GetName().Version; // put in the version number
+        }
 
 
 
@@ -67,6 +71,8 @@ namespace MythicalProjectDays
             lbl_days_between.Text = CalculateDays(startDateTime, endDateTime);
            
         }
+
+       
 
         //-------------------------------------------------------------------------------
 

@@ -9,10 +9,10 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("MythicalProjectDays")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("Mythical Project Days")]
+[assembly: AssemblyDescription("Work out how many hours you spend on the project")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Intelligent Engineer")]
 [assembly: AssemblyProduct("MythicalProjectDays")]
 [assembly: AssemblyCopyright("Copyright 2022")]
 [assembly: AssemblyTrademark("")]
@@ -22,10 +22,15 @@ using System.Runtime.InteropServices;
 // If you need to expose a type to COM, use [ComVisible(true)] on that type.
 [assembly: ComVisible(false)]
 
-// The assembly version has following format :
+// Version information for an assembly consists of the following four values:
 //
-// Major.Minor.Build.Revision
+//      Major Version
+//      Minor Version
+//      Build Number
+//      Revision
 //
-// You can specify all the values or you can use the default the Revision and 
-// Build Numbers by using the '*' as shown below:
+// You can specify all the values or you can default the Build and Revision Numbers
+// by using the '*' as shown below:
 [assembly: AssemblyVersion("1.0.*")]
+//[assembly: AssemblyVersion("1.0.0.0")]
+[assembly: AssemblyFileVersion("1.0.0.0")]
