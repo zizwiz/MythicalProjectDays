@@ -3,6 +3,7 @@ using System.Linq;
 using System.Windows.Forms;
 using System.Collections.Generic;
 using System.Reflection;
+using System.Drawing;
 
 
 namespace MythicalProjectDays
@@ -14,7 +15,10 @@ namespace MythicalProjectDays
     	 
 		 private List<DateTime> PublicHoliday = new List<DateTime>();
 		 private BindingSource PublicHolidaySource = new BindingSource();
-    
+		 
+		 bool flag = true;
+		 
+		    
 		public MainForm()
 		{
 			InitializeComponent();
@@ -129,23 +133,58 @@ namespace MythicalProjectDays
 		
 		void Btn_days_betweenClick(object sender, EventArgs e)
 		{
-			//get DateTime using only Year, Month and Day and clock at midnight.
+			lbl_days_between.Text = lbl_project_days.Text = ""; //Clear the screen
+			int AddedDays = 0;
+			
+			if (flag) //flag = percentage number is in range
+           	{
+				//get DateTime using only Year, Month and Day and clock at midnight.
             DateTime startDateTime = DateTime.Parse(DatePick_StartDate.Value.Day + "/" + DatePick_StartDate.Value.Month + "/" + DatePick_StartDate.Value.Year);
             DateTime endDateTime = DateTime.Parse(DatePick_EndDate.Value.Day + "/" + DatePick_EndDate.Value.Month + "/" + DatePick_EndDate.Value.Year);
 
             string[] returnedCalculatedDays = CalculateDays(startDateTime, endDateTime);
                        
-           	lbl_days_between.Text = "Mythical Work Days = " + returnedCalculatedDays[0] + "\n" + 
-           	"Public Holidays = " + returnedCalculatedDays[1] + "\n" + 
-           	"Annual Holidays = " + returnedCalculatedDays[2];
+           		lbl_days_between.Text = "Work Days = " + returnedCalculatedDays[0] + "\n" + 
+           								"Public Holidays = " + returnedCalculatedDays[1] + "\n" + 
+           								"Annual Holidays = " + returnedCalculatedDays[2];
             
-           	float MythicalDays = float.Parse(returnedCalculatedDays[0]) * ((100+(100-float.Parse(txtbx_project_days_percentage.Text)))/100);
-
-            string AdjustedEndDate = DatePick_EndDate.Value.AddDays(MythicalDays - float.Parse(returnedCalculatedDays[0])).ToString();
-            AdjustedEndDate = AdjustedEndDate.Substring(0, AdjustedEndDate.LastIndexOf('/') + 5);
-
-			lbl_project_days.Text = "Number of Real Days required = " + MythicalDays.ToString() + "\n" +
-                                    "\nEnd Date now = " + AdjustedEndDate;     // DatePick_EndDate.Value.AddDays(MythicalDays);            
+           	
+           		int MythicalDays = (int)Math.Round(float.Parse(returnedCalculatedDays[0]) * ((100+(100-float.Parse(txtbx_project_days_percentage.Text)))/100));
+	           	int ExtraDaysReq = (int)Math.Round(MythicalDays - float.Parse(returnedCalculatedDays[0])); //due to percentage on project
+	
+	           	for (int i = 1; i < (ExtraDaysReq+AddedDays); i++)
+	            {	            
+	           		if ((DatePick_EndDate.Value.AddDays(i).DayOfWeek == DayOfWeek.Saturday)||(DatePick_EndDate.Value.AddDays(i).DayOfWeek == DayOfWeek.Sunday))
+                	{
+						AddedDays++; // A weekend day so add an extra day.
+					}
+	           		else if (PublicHoliday.Contains(DateTime.Parse(DatePick_EndDate.Value.AddDays(i).ToShortDateString())))
+					{
+						AddedDays++; // Public Holiday day so add an extra day
+					}
+					else if (AnnualHoliday.Contains(DateTime.Parse(DatePick_EndDate.Value.AddDays(i).ToShortDateString())))
+					{
+						AddedDays++; // Annual Holiday day so add an extra day
+					}
+	            }
+					
+	            string AdjustedEndDate = DatePick_EndDate.Value.AddDays(ExtraDaysReq + AddedDays).ToString();
+	            AdjustedEndDate = AdjustedEndDate.Substring(0, AdjustedEndDate.LastIndexOf('/') + 5);
+	            	
+	            	
+	            
+           	
+				lbl_project_days.Text = "Number of Real Days required = " + MythicalDays.ToString() + "\n" +
+	                                	"\nEnd Date now = " + AdjustedEndDate +
+										"\nExtra Days = " + (ExtraDaysReq)+
+										"\nAdded Days = " + (AddedDays);
+			
+			}
+			else
+			{
+				MessageBox.Show("Please correct the Percentage on project");
+				
+			}
 		}
 		
 		void Btn_add_holidayClick(object sender, EventArgs e)
@@ -175,7 +214,7 @@ namespace MythicalProjectDays
 			
 			if (openFileDialog_pub_hols.ShowDialog() == DialogResult.OK)
 			{
-				lstbx_public_hol.DataSource = null;
+				lstbx_public_hol.DataSource = null; //clear any existing data
 				PublicHoliday.Clear();
 			
 				lstbx_public_hol.DataSource = PublicHolidaySource;
@@ -205,7 +244,7 @@ namespace MythicalProjectDays
 			
 			if (openFileDialog_private_hols.ShowDialog() == DialogResult.OK)
 			{
-				lstbx_annual_hol.DataSource = null;
+				lstbx_annual_hol.DataSource = null; //clear any existing data
 				AnnualHoliday.Clear();
 			
 				lstbx_annual_hol.DataSource = AnnualHolidaySource;
@@ -258,5 +297,36 @@ namespace MythicalProjectDays
 		{
 			AnnualHolidaySource.Remove(lstbx_annual_hol.SelectedItem);			
 		}
+		
+		void Txtbx_project_days_percentageTextChanged(object sender, EventArgs e)
+		{			
+			int percentage = 0;
+			
+			txtbx_project_days_percentage.BackColor = Color.White;
+			
+			if (int.TryParse(txtbx_project_days_percentage.Text, out percentage))
+			{
+				if (percentage > 0 && percentage <= 100)
+				{
+					flag = true;
+				}
+				else
+				{
+					txtbx_project_days_percentage.BackColor = Color.Red;
+					flag = false;
+					lbl_days_between.Text = lbl_project_days.Text = ""; //Clear the screen
+					MessageBox.Show("Number must be > 0 and <= 100");
+				}
+			}
+			else
+			{
+				txtbx_project_days_percentage.BackColor = Color.Red;
+				flag = false;
+				lbl_days_between.Text = lbl_project_days.Text = ""; //Clear the screen
+				MessageBox.Show("Only numbers allowed in the textbox");
+			}
+		}
+		
+		
 	}
 }
