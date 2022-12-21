@@ -27,7 +27,13 @@ namespace MythicalProjectDays
 		void MainFormLoad(object sender, EventArgs e)
 		{
 			AnnualHolidaySource.DataSource = AnnualHoliday;	
-			PublicHolidaySource.DataSource = PublicHoliday;
+			PublicHolidaySource.DataSource = PublicHoliday;	
+			
+			lbl_days_req.Visible = false;
+			txtbx_days_req.Visible = false;
+				
+			lbl_date_to.Visible = true;
+			DatePick_EndDate.Visible = true;
 
             Text += " : v" + Assembly.GetExecutingAssembly().GetName().Version; // put in the version number
 		}
@@ -138,11 +144,28 @@ namespace MythicalProjectDays
 			
 			if (flag) //flag = percentage number is in range
            	{
+				
+				if ((rdobtn_days_req.Checked)&&(txtbx_days_req.Text != ""))
+				{
+					if (DatePick_EndDate.Value.AddDays(int.Parse(txtbx_days_req.Text)) >= DatePick_StartDate.Value)
+					{
+						DatePick_EndDate.Value = DatePick_EndDate.Value.AddDays(int.Parse(txtbx_days_req.Text));
+					}
+					else
+					{
+						txtbx_days_req.BackColor = Color.Red;
+						MessageBox.Show("Check the date as you appear to be ending before you start");
+					}
+					
+					
+				}
+				
+				
 				//get DateTime using only Year, Month and Day and clock at midnight.
-            DateTime startDateTime = DateTime.Parse(DatePick_StartDate.Value.Day + "/" + DatePick_StartDate.Value.Month + "/" + DatePick_StartDate.Value.Year);
-            DateTime endDateTime = DateTime.Parse(DatePick_EndDate.Value.Day + "/" + DatePick_EndDate.Value.Month + "/" + DatePick_EndDate.Value.Year);
+            	DateTime startDateTime = DateTime.Parse(DatePick_StartDate.Value.Day + "/" + DatePick_StartDate.Value.Month + "/" + DatePick_StartDate.Value.Year);
+            	DateTime endDateTime = DateTime.Parse(DatePick_EndDate.Value.Day + "/" + DatePick_EndDate.Value.Month + "/" + DatePick_EndDate.Value.Year);
 
-            string[] returnedCalculatedDays = CalculateDays(startDateTime, endDateTime);
+            	string[] returnedCalculatedDays = CalculateDays(startDateTime, endDateTime);
                        
            		lbl_days_between.Text = "Work Days = " + returnedCalculatedDays[0] + "\n" + 
            								"Public Holidays = " + returnedCalculatedDays[1] + "\n" + 
@@ -176,9 +199,13 @@ namespace MythicalProjectDays
            	
 				lbl_project_days.Text = "Number of Real Days required = " + MythicalDays.ToString() + "\n" +
 	                                	"\nEnd Date now = " + AdjustedEndDate +
-										"\nExtra Days = " + (ExtraDaysReq)+
-										"\nAdded Days = " + (AddedDays);
+										"\nExtra Days = " + ExtraDaysReq +
+										"\nAdded Days = " + AddedDays;
 			
+				if ((rdobtn_days_req.Checked)&&(txtbx_days_req.Text != ""))
+				{
+					DatePick_EndDate.Value = DatePick_EndDate.Value.AddDays(-int.Parse(txtbx_days_req.Text));
+				}
 			}
 			else
 			{
@@ -324,6 +351,45 @@ namespace MythicalProjectDays
 				flag = false;
 				lbl_days_between.Text = lbl_project_days.Text = ""; //Clear the screen
 				MessageBox.Show("Only numbers allowed in the textbox");
+			}
+		}
+		
+		void Txtbx_days_reqTextChanged(object sender, EventArgs e)
+		{
+			int DaysReq = 0;
+			
+			txtbx_days_req.BackColor = Color.White;
+			
+			if (int.TryParse(txtbx_days_req.Text, out DaysReq))
+			{
+				
+			}
+			else
+			{
+				txtbx_days_req.BackColor = Color.Red;
+				lbl_days_between.Text = lbl_project_days.Text = ""; //Clear the screen
+				MessageBox.Show("Only numbers allowed in the textbox");
+			}
+			
+		}
+		
+		void Rdobtn_days_reqCheckedChanged(object sender, EventArgs e)
+		{
+			if (rdobtn_days_req.Checked)
+			{
+				lbl_days_req.Visible = true;
+				txtbx_days_req.Visible = true;
+				
+				lbl_date_to.Visible = false;
+				DatePick_EndDate.Visible = false;
+			}
+			else
+			{
+				lbl_days_req.Visible = false;
+				txtbx_days_req.Visible = false;
+				
+				lbl_date_to.Visible = true;
+				DatePick_EndDate.Visible = true;
 			}
 		}
 		
